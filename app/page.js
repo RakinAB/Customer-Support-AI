@@ -1,18 +1,20 @@
 'use client'
-import { useState } from "react";
-import { Box, Button, Stack, TextField } from "@mui/material";
-import Image from "next/image";
+import { useState } from "react"
+import { Box, Button, Stack, TextField } from "@mui/material"
+import Image from "next/image"
+
 
 export default function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content:`Hello, I am your Headstarter Support Agent. How may I help you today?`
+      content:`Hello, I am your Tech Savy Support Agent. How may I help you today?`
     }
   ])
 
   const [message, setMessage] = useState('')
   
+ 
   const sendMessage = async() => {
     setMessage('')
     setMessages((messages)=>[
@@ -71,7 +73,7 @@ export default function Home() {
 
       <Stack
         direction={'column'}
-        width={'600px'}
+        width={'1000px'}
         height='700px'
         p={2}
         spacing={3}
@@ -95,7 +97,7 @@ export default function Home() {
             >
               <Box
                 bgcolor={
-                  message.role === 'assistant' ? '#00FFC9' : 'gray'
+                  message.role === 'assistant' ? 'primary.main' : 'gray'
                 }
                 color='white'
                 borderRadius={16}
@@ -110,8 +112,22 @@ export default function Home() {
           <TextField 
             label = 'Send a message'
             fullWidth
+            variant="standard"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            sx={{
+              input: { color: 'white' },
+              label: { color: 'white' },
+              '& .MuiInput-underline:before': {
+                borderBottomColor: 'white',
+              },
+              '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+                borderBottomColor: 'white',
+              },
+              '& .MuiInput-underline:after': {
+                borderBottomColor: 'white',
+              },
+            }}
           />
           <Button 
             variant="contained"
@@ -121,7 +137,6 @@ export default function Home() {
               height: '60px', // Adjust the size as needed
               minWidth: '60px', // Ensure the button doesn't resize
               padding: 0, // Remove default padding
-              bgcolor: '#00FFC9'
             }}
             onClick={sendMessage}
           >
